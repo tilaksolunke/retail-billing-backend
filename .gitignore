@@ -21,3 +21,34 @@ Thumbs.db
 
 # Application properties (if contains sensitive data)
 application-prod.properties
+
+# Environment files with secrets
+.env
+.env.local
+.env.production
+*.env
+
+# Backup of application.properties with secrets
+application.properties.backup
+application-secrets.properties
+
+# Any file containing API keys or secrets
+**/application-prod.properties
+**/application-local.properties
+**/*secret*
+**/*key*.properties
+
+# Stripe specific files (if you create separate config files)
+stripe-config.properties
+payment-config.properties
+
+# Any properties files in config directory
+config/*.properties
+config/*.yml
+
+# IDE specific environment files
+.vscode/settings.json
+.idea/runConfigurations/
+
+# Test properties with real keys
+application-test-with-keys.properties
