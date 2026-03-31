@@ -53,9 +53,9 @@ public class SecurityConfig {
         http.cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1.0/login", "/encode", "/uploads/**").permitAll()
+                        .requestMatchers("/login", "/encode", "/uploads/**").permitAll()
                         .requestMatchers("/payments/**").permitAll()  // Allow all payment endpoints
-                        .requestMatchers("/categories", "/items", "/orders", "/api/v1.0/dashboard").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/categories", "/items", "/orders", "/dashboard").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
