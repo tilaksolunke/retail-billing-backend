@@ -32,8 +32,20 @@ public class AuthController {
     private final AppUserDetailsService appUserDetailsService;
     private final JwtUtil jwtUtil;
     private final UserService userService;
+//    @PostMapping("/login")
+//    public AuthResponse login(@RequestBody AuthRequest request) throws Exception {
+//        authenticate(request.getEmail(), request.getPassword());
+//        final UserDetails userDetails = appUserDetailsService.loadUserByUsername(request.getEmail());
+//        final String jwtToken = jwtUtil.generateToken(userDetails);
+//        String role = userService.getUserRole(request.getEmail());
+//        return new AuthResponse(request.getEmail(), jwtToken, role);
+//    }
+
     @PostMapping("/login")
     public AuthResponse login(@RequestBody AuthRequest request) throws Exception {
+
+        System.out.println("LOGIN API HIT ✅");   // 👈 ADD THIS LINE
+
         authenticate(request.getEmail(), request.getPassword());
         final UserDetails userDetails = appUserDetailsService.loadUserByUsername(request.getEmail());
         final String jwtToken = jwtUtil.generateToken(userDetails);
