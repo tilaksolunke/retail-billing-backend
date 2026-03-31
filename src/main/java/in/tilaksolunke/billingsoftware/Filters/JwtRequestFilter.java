@@ -28,8 +28,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         String path = request.getRequestURI();
 
-        // ✅ VERY IMPORTANT: Skip login endpoint
-        if (path.equals("/api/v1.0/login")) {
+        if (path.contains("/login")) {
             filterChain.doFilter(request, response);
             return;
         }
