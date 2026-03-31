@@ -21,8 +21,18 @@ import java.io.IOException;
 public class JwtRequestFilter extends OncePerRequestFilter {
     private final AppUserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
+
+        String path = request.getRequestURI();
+
+        // ✅ VERY IMPORTANT: Skip login endpoint
+        if (path.equals("/api/v1.0/login")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
         final String authorizationHeader = request.getHeader("Authorization");
 
