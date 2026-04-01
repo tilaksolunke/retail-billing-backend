@@ -22,16 +22,26 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private final AppUserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
 
+    // new
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getServletPath();
+        return path.equals("/login") ||
+                path.equals("/encode") ||
+                path.startsWith("/uploads/") ||
+                path.startsWith("/payments/");
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
 
-        String path = request.getServletPath();
-
-        if (path.equals("/api/v1.0/login") || path.equals("/api/v1.0/encode")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
+//        String path = request.getServletPath();
+//
+//        if (path.equals("/api/v1.0/login") || path.equals("/api/v1.0/encode")) {
+//            filterChain.doFilter(request, response);
+//            return;
+//        }
 
         final String authorizationHeader = request.getHeader("Authorization");
 
