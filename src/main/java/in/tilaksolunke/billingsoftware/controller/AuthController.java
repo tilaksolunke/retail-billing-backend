@@ -41,7 +41,7 @@ public class AuthController {
 //        return new AuthResponse(request.getEmail(), jwtToken, role);
 //    }
 
-    @PostMapping("/login")
+    @PostMapping("/auth/login")
     public AuthResponse login(@RequestBody AuthRequest request) throws Exception {
 
         System.out.println("LOGIN API HIT ✅");   // 👈 ADD THIS LINE
